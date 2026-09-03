@@ -1,75 +1,22 @@
-# React + TypeScript + Vite
+# personal-canvas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-page [tldraw](https://tldraw.dev) canvas, built with Vite and deployed to GitHub Pages at [caissonpoint.github.io](https://caissonpoint.github.io/).
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+tldraw allows unlicensed use on localhost, so the canvas should load immediately.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## GitHub Pages
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This is a user site (`username.github.io`), so Vite’s `base` is `/`. The Actions workflow builds `dist` and deploys it with `actions/deploy-pages`.
 
-```
+tldraw 5 requires a license key in production. Without one, the editor shows for about five seconds and then unmounts, which looks like a blank screen.
+
+1. Get a free 100-day trial at [tldraw.dev/pricing](https://tldraw.dev/pricing), or apply for a hobby license at [tldraw.dev/get-a-license/hobby](https://tldraw.dev/get-a-license/hobby). Register the domain `caissonpoint.github.io`.
+2. Add a repository secret named `VITE_TLDRAW_LICENSE_KEY`.
+3. Re-run **Deploy to GitHub Pages** (or push to `main`).
