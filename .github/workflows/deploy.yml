@@ -35,6 +35,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          # Only override the bundled trial key when a repo secret is set.
           VITE_TLDRAW_LICENSE_KEY: ${{ secrets.VITE_TLDRAW_LICENSE_KEY }}
 
       - name: Upload artifact
